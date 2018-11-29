@@ -1,0 +1,59 @@
+"""
+File: foodPurchase.py
+Creater: Houston Hutchison
+Posted: WWW.Github.com
+"""
+
+from breezypythongui import EasyFrame
+
+
+class Total_Amt(EasyFrame):
+    """Displays labels in the quadrants."""
+
+    def __init__(self):
+        """Sets up the window and the labels."""
+        EasyFrame.__init__(self, title="amount/tax/tip/total")
+
+        self.addLabel(text="Enter the amount of food:", row=0, column=0)
+        self.addLabel(text="Tax Amount:", row=1, column=0)
+        self.addLabel(text="Tip amount:", row=2, column=0)
+        # where user enters the information
+        self.foodAmt_entry = self.addFloatField(0, row=0, column=1, width=10, precision=2)
+
+        # output area of the program
+        # Displays Tax Amount
+        self.addLabel("Tax Amount:", row=1, column=0)
+        self.taxAmt_label = self.addLabel("", row=1, column=1)
+        # displays Tip Amount
+        self.addLabel("Tip Amount:", row=2, column=0)
+        self.tipAmt_label = self.addLabel("", row=2, column=1)
+
+        # Displays total amount
+        self.addLabel("Total Amount:", row=3, column=0)
+        self.total_label = self.addLabel("", row=3, column=1)
+
+        self.getTotalBtn = self.addButton(text="Get Total", row=4,
+                                          column=0, columnspan=3,
+                                          command=self.calc_avg)
+
+    def calc_avg(self):
+        # get the three test scores and store them
+        self.foodAmt=float(self.foodAmt_entry.get())
+        # calculate the tax amount
+        self.totalTax = self.foodAmt * .10
+        self.totalTip = (self.foodAmt + self.totalTax) * .20
+        self.totalAmount = (self.foodAmt + self.totalTax + self.totalTip)
+        # update the avg_label widget by storing the value of self.average in the stringVar
+        # object referenced by avg.
+        self.taxAmt_label["text"] = format(self.totalTax, '.2f')
+        self.tipAmt_label["text"] = format(self.totalTip, '.2f')
+        self.total_label["text"] = format(self.totalAmount, '.2f')
+
+
+def main():
+    """Instantiate and pop up the window."""
+    Total_Amt().mainloop()
+
+
+if __name__ == "__main__":
+    main()
