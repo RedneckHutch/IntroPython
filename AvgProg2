@@ -1,0 +1,28 @@
+"""
+File: AvgProg2.py
+
+"""
+
+from breezypythongui import EasyFrame
+
+
+class AvgGrades(EasyFrame):
+    """Displays labels in the quadrants."""
+
+
+    def __init__(self):
+        """Sets up the window and the labels."""
+        EasyFrame.__init__(self, title="Grade Average Program")
+        self.addLabel(text="Enter in the score for test 1:", row=0, column=0)
+        self.addLabel(text="Enter in the score for test 2:", row=1, column=0)
+        self.addLabel(text="Enter in the score for test 3:", row=2, column=0)
+        self.addLabel("Average", row=3, column=0)
+        self.avg_label = self.addLabel("output", row=3, column=1)
+
+def main():
+    """Instantiate and pop up the window."""
+    AvgGrades().mainloop()
+
+
+if __name__ == "__main__":
+    main()
