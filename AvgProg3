@@ -1,0 +1,46 @@
+"""
+File: AvgProg2.py
+
+"""
+
+from breezypythongui import EasyFrame
+
+
+class AvgGrades(EasyFrame):
+    """Displays labels in the quadrants."""
+    def __init__(self):
+        """Sets up the window and the labels."""
+        EasyFrame.__init__(self, title="Grade Average Program")
+        self.addLabel(text="Enter in the score for test 1:", row=0, column=0)
+        self.addLabel(text="Enter in the score for test 2:", row=1, column=0)
+        self.addLabel(text="Enter in the score for test 3:", row=2, column=0)
+        # where user enters the information
+        self.test1_entry = self.addFloatField(0, row=0, column=1, width=10, precision=2)
+        self.test2_entry = self.addFloatField(0, row=1, column=1, width=10, precision=2)
+        self.test3_entry = self.addFloatField(0, row=2, column=1, width=10, precision=2)
+        # output area of the program
+        self.addLabel("Average", row=3, column=0)
+        self.avg_label = self.addLabel("", row=3, column=1)
+
+        self.calcBtn = self.addButton(text="Calc", row=4,
+                                      column=0, columnspan = 3,
+                                      command=self.calc_avg)
+
+    def calc_avg(self):
+        # get the three test scores and store them
+        self.test1=float(self.test1_entry.get())
+        self.test2=float(self.test2_entry.get())
+        self.test3=float(self.test3_entry.get())
+
+        # calculate the avg
+        self.average=(self.test1 + self.test2 + self.test3) / 3
+        # update the avg_label widget by storing the value of self.average in the stringVar
+        # object referenced by avg.
+        self.avg_label["text"]=format(self.average,'2f')
+def main():
+    """Instantiate and pop up the window."""
+    AvgGrades().mainloop()
+
+
+if __name__ == "__main__":
+    main()
