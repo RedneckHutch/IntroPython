@@ -36,7 +36,7 @@ class AvgGrades(EasyFrame):
         self.average=(self.test1 + self.test2 + self.test3) / 3
         # update the avg_label widget by storing the value of self.average in the stringVar
         # object referenced by avg.
-        self.avg_label["text"]=format(self.average,'2f')
+        self.avg_label["text"]=format(self.average,'.2f')
 def main():
     """Instantiate and pop up the window."""
     AvgGrades().mainloop()
